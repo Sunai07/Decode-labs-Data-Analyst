@@ -1,0 +1,79 @@
+## 📌 Project Overview
+This repository showcases professional data analytics practices applied to an e-commerce transactional audit trace containing 1,200 unique sales rows across multiple fiscal cycles. The workflow details an explicit staging and cleaning architecture, statistical baseline profiling, and multi-dimensional reporting arrays designed to reveal consumer behavior, marketing efficacy, and supply-chain logistics.
+
+## 📁 Repository Structure
+* **`Book1.xlsx`** – Master workbook featuring raw ingestions, structured staging tables, descriptive profiling blocks, and analytical reporting views.
+* **`README.md`** – Comprehensive technical analysis, project roadmap, and dataset breakdown.
+
+---
+
+## 🛠️ Data Architecture & Engineering Staging
+
+The production data lifecycle begins on the raw ingestion tab (`orignal data`) and moves through systematic validation constraints before being committed to the structured analytical model on the `CleanedData` sheet.
+
+### Structural Transformations Applied:
+1. **Sparsity Mitigation (`CouponCode`):** Replaced null fields and blank textual frames with a standardized identifier (`"NoCoupon"`). This prevents Excel's Pivot engine from clustering sparse attributes under broken `(blank)` visual headers.
+2. **Feature Engineering (`IsRepeatBuyer`):** Calculated historic customer recurrence loops using deterministic evaluation array structures to derive customer status cohorts (`One-Time` vs. `Repeat Buyer`).
+3. **Fulfillment Audit Mapping:** Classified order status codes (`Shipped`, `Delivered`, `Pending`, `Cancelled`, `Returned`) to serve as top-level parameters for distinguishing active operational sales from revenue losses.
+
+### Comprehensive Staging Schema
+| Attribute Field | Data Profile | Analytical Importance | Engineering Action |
+| :--- | :--- | :--- | :--- |
+| `OrderID` | Text / Primary Key | Unique transaction trace identifier | Verified alphanumeric uniformity & zero duplication |
+| `Date` | Temporal (YYYY-MM-DD) | Temporal anchor for tracking seasonal velocity | Coerced variant inputs into standardized ISO date format |
+| `CustomerID` | Text / Alternative Key | Maps individual account purchase paths | Cross-referenced for behavioral frequency analysis |
+| `Product` | Categorical String | Product portfolio segments (7 Core Skus) | Validated strings against master stock catalog labels |
+| `Quantity` | Discrete Integer | Unit depth purchased per transaction | Enforced positive integer constraints ($Q > 0$) |
+| `UnitPrice` | Continuous Currency | Baseline catalog price per individual unit | Standardized floating points for currency formatting |
+| `PaymentMethod` | Categorical String | Transaction mechanism used by consumer | Grouped into 5 standardized checkout variations |
+| `OrderStatus` | Categorical String | Operational logistical fulfillment state | Set up structural indices for return/loss tracking |
+| `CouponCode` | Categorical String | Marketing campaign indicator | Imputed sparse blocks with `"NoCoupon"` flags |
+| `ReferralSource` | Categorical String | User acquisition channel tracking | Isolated attribution tags for ROI reporting |
+| `TotalPrice` | Continuous Currency | Aggregate gross sale volume before adjustments | Formatted to 2 decimals; flagged for margin calculation adjustments |
+| `IsRepeatBuyer` | Categorical (Derived) | Engineered customer loyalty feature | Created using logic criteria based on purchase frequency |
+
+---
+
+## 📊 Summary Statistics & Distribution Profiling
+A descriptive analysis was performed on the `TotalPrice` matrix to understand its mathematical behavior and shape:
+
+* **Total Row Population:** 1,200 Validated Records
+* **Minimum Order Value:** $11.39
+* **Maximum Order Value:** $3,456.40
+* **Mean Order Value:** $1,053.97
+* **Median Order Value:** $823.62
+* **Standard Deviation:** $819.86
+* **Interquartile Range (IQR):** $1,167.96
+  * *First Quartile (Q1):* $410.52
+  * *Third Quartile (Q3):* $1,578.48
+
+### Distribution Insight:
+The significant right-skewed gap between the median ($823.62) and the mean ($1,053.97), combined with a high standard deviation ($819.86), proves the transaction mix includes large B2B or commercial volume baskets. This variance confirms that simple averages don't tell the full story, requiring a multi-dimensional pivot structure to filter out outliers.
+
+---
+
+## 🗂️ Pivot Table Reporting Architecture
+
+The database architecture inside the `PivotTables` sheet contains cross-tabulated arrays optimized for slicing business performance along different dimensions:
+
+### 1. Coupon Efficacy Matrix
+* **Target:** Evaluates promotional code performance across channels (`SAVE10`, `WINTER15`, `FREESHIP`).
+* **Metrics:** Evaluates unit volume sales, total transaction volume, and average order values.
+* **Strategic Value:** Highlights margin compression risks by identifying if discount codes are driving net-new volume or shrinking existing transaction totals.
+
+### 2. Product Line Velocity
+* **Target:** Tracks revenue performance across core inventory segments: *Monitor, Phone, Tablet, Chair, Printer, Laptop, Desk*.
+* **Metrics:** Total transactional volume sales alongside gross cash inflows.
+* **Strategic Value:** Pinpoints primary revenue engines versus slow-moving inventory lines to guide warehouse and purchasing strategies.
+
+### 3. Customer Acquisition Attribution
+* **Target:** Maps incoming revenue back to initial digital touchpoints (`Instagram`, `Facebook`, `Google`, `Email`, `Referral`).
+* **Metrics:** Total order distribution combined with aggregate revenue production.
+* **Strategic Value:** Evaluates marketing channel performance to optimize ad spend allocations.
+
+### 4. Fiscal Time-Intelligence View
+* **Target:** Organizes transaction records across multiple fiscal years (2023, 2024, 2025).
+* **Metrics:** Year-over-Year (YoY) revenue pacing.
+* **Strategic Value:** Uncovers baseline performance growth trends and identifies long-term retail seasonality curves.
+
+---
