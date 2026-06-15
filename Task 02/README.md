@@ -14,9 +14,9 @@ This repository showcases the implementation of clean data architecture, mathema
 
 ## 📁 Repository Structure
 * **`Task 02 -sunai.xlsx`** — Master workbook containing raw data loops, data engineering staging, descriptive stats, and interactive dashboard views.
-* **`Task 02 -sunai.xlsx - CleanedData.csv`** — Cleaned baseline transaction log with engineered customer segments.
-* **`Task 02 -sunai.xlsx - Summary Statistics.csv`** — Central descriptive data profiling layer.
-* **`Task 02 -sunai.xlsx - PivotTables.csv`** — Aggregated multi-dimensional business intelligence matrices.
+* **`CleanedData`** — Cleaned baseline transaction log with engineered customer segments.
+* **`Summary Statistics`** — Central descriptive data profiling layer.
+* **`PivotTables`** — Aggregated multi-dimensional business intelligence matrices.
 
 ---
 
